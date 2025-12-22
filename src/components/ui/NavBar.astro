@@ -43,7 +43,67 @@ import Button from "./Button.astro";
   </div>
 
   <!-- Mobile Menu Icon -->
-  <div class="md:hidden text-white cursor-pointer">
-    <span class="material-symbols-outlined">menu</span>
-  </div>
+  <button
+    id="mobile-menu-btn"
+    class="md:hidden text-white cursor-pointer p-2 hover:opacity-80 transition-opacity"
+    aria-label="Abrir menú"
+  >
+    <span class="material-symbols-outlined" id="menu-icon">menu</span>
+  </button>
 </header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="hidden fixed top-16 left-0 right-0 bg-[#101322] border-b border-solid border-b-[#222949]/50 z-40 md:hidden"
+>
+  <nav class="flex flex-col gap-4 px-10 py-6">
+    <a
+      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      href="/services"
+    >
+      Servicios
+    </a>
+    <a
+      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      href="#projects"
+    >
+      Portafolio
+    </a>
+    <a
+      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      href="#about"
+    >
+      Sobre Nosotros
+    </a>
+    <div class="pt-4">
+      <Button variant="primary" size="sm">Solicitar Cotización</Button>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+
+  mobileMenuBtn?.addEventListener("click", () => {
+    const isHidden = mobileMenu?.classList.contains("hidden");
+    if (isHidden) {
+      mobileMenu?.classList.remove("hidden");
+      menuIcon!.textContent = "close";
+    } else {
+      mobileMenu?.classList.add("hidden");
+      menuIcon!.textContent = "menu";
+    }
+  });
+
+  // Cerrar menú al hacer click en un enlace
+  const links = mobileMenu?.querySelectorAll("a");
+  links?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon!.textContent = "menu";
+    });
+  });
+</script>
