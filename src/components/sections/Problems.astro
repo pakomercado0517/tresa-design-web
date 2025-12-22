@@ -1,0 +1,73 @@
+---
+import Card from "../ui/Card.astro";
+
+const problems = [
+  {
+    icon: "bolt",
+    title: "Automatización de procesos",
+    description:
+      "Reducimos la carga operativa automatizando tareas repetitivas para ahorrar tiempo y recursos.",
+  },
+  {
+    icon: "settings",
+    title: "Sistemas a medida",
+    description:
+      "Desarrollamos software personalizado que se adapta 100% a las reglas de tu negocio.",
+  },
+  {
+    icon: "public",
+    title: "Presencia web profesional",
+    description:
+      "Diseñamos experiencias digitales modernas que generan confianza y atraen clientes.",
+  },
+  {
+    icon: "trending_up",
+    title: "Optimización de flujos",
+    description:
+      "Mejoramos la eficiencia de tus operaciones eliminando cuellos de botella en el trabajo.",
+  },
+];
+---
+
+<section class="px-4 md:px-10 py-20 flex justify-center" id="solutions">
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <div class="flex flex-col gap-10 md:gap-16">
+      <div class="flex flex-col gap-4 max-w-[800px]">
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm">
+          Soluciones Clave
+        </h2>
+        <h1
+          class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+        >
+          Problemas que resolvemos
+        </h1>
+        <p class="text-slate-400 text-lg font-normal leading-relaxed">
+          Identificamos y eliminamos los obstáculos clave que impiden el
+          crecimiento digital de tu negocio con soluciones efectivas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          problems.map((problem) => (
+            <Card>
+              <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined !text-2xl">
+                  {problem.icon}
+                </span>
+              </div>
+              <div class="flex flex-col gap-3">
+                <h3 class="text-white text-lg font-bold leading-tight">
+                  {problem.title}
+                </h3>
+                <p class="text-[#909acb] text-sm font-normal leading-relaxed">
+                  {problem.description}
+                </p>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

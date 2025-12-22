@@ -1,0 +1,105 @@
+---
+import Card from "../ui/Card.astro";
+
+const services = [
+  {
+    icon: "globe",
+    title: "Desarrollo de páginas web",
+    description:
+      "Sitios rápidos y optimizados para SEO que convierten visitantes en clientes potenciales.",
+  },
+  {
+    icon: "dashboard",
+    title: "Web apps personalizadas",
+    description:
+      "Aplicaciones diseñadas específicamente para los flujos de trabajo únicos de tu negocio.",
+  },
+  {
+    icon: "admin_panel_settings",
+    title: "Sistemas administrativos",
+    description:
+      "Dashboards y software para la gestión y visualización de datos en tiempo real.",
+  },
+  {
+    icon: "api",
+    title: "Integración de APIs",
+    description:
+      "Conectamos tus herramientas favoritas (CRM, Pagos, ERP) para automatizar procesos y centralizar información.",
+  },
+  {
+    icon: "support_agent",
+    title: "Mantenimiento y soporte",
+    description:
+      "Acompañamiento técnico continuo, actualizaciones de seguridad y monitoreo para que el software nunca se detenga.",
+  },
+];
+---
+
+<section class="px-4 md:px-10 py-20 flex justify-center" id="all-services">
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <div class="flex flex-col gap-10 md:gap-16">
+      <div class="flex flex-col gap-4 max-w-[700px]">
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm">
+          Nuestros Servicios
+        </h2>
+        <h1
+          class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+        >
+          Ecosistema completo de desarrollo
+        </h1>
+        <p class="text-slate-400 text-lg font-normal leading-relaxed">
+          Desde la primera línea de código hasta el mantenimiento a largo plazo,
+          cubrimos todas las etapas de tu producto digital.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          services.map((service) => (
+            <Card>
+              <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined !text-2xl">
+                  {service.icon}
+                </span>
+              </div>
+              <div class="flex flex-col gap-3">
+                <h3 class="text-white text-xl font-bold leading-tight">
+                  {service.title}
+                </h3>
+                <p class="text-[#909acb] text-base font-normal leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </Card>
+          ))
+        }
+
+        <!-- Tarjeta de contacto -->
+        <Card>
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+          >
+            <span class="material-symbols-outlined !text-2xl">help</span>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-white text-xl font-bold leading-tight">
+              ¿Tienes un reto diferente?
+            </h3>
+            <p class="text-[#909acb] text-base font-normal leading-relaxed">
+              No encajan los desafíos técnicos. ¡Hablemos de lo tuyo.
+            </p>
+            <a
+              class="text-primary font-bold text-base hover:text-white transition-colors flex items-center gap-2 mt-2 group"
+            >
+              Contáctanos
+              <span
+                class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </div>
+</section>

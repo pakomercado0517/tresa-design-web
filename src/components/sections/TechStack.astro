@@ -1,0 +1,89 @@
+---
+const techCategories = [
+  {
+    name: "Frontend",
+    icon: "code",
+    technologies: [
+      { name: "React", abbr: "RE" },
+      { name: "Next.js", abbr: "NJ" },
+      { name: "Astro", abbr: "AS" },
+    ],
+  },
+  {
+    name: "Backend",
+    icon: "storage",
+    technologies: [
+      { name: "Node.js", abbr: "ND" },
+      { name: "Express", abbr: "EX" },
+      { name: "NestJS", abbr: "NS" },
+    ],
+  },
+  {
+    name: "Bases de datos",
+    icon: "database",
+    technologies: [
+      { name: "PostgreSQL", abbr: "PG" },
+      { name: "MongoDB", abbr: "MG" },
+    ],
+  },
+  {
+    name: "ORMs",
+    icon: "schema",
+    technologies: [
+      { name: "Sequelize", abbr: "SQ" },
+      { name: "Mongoose", abbr: "MO" },
+    ],
+  },
+];
+---
+
+<section class="px-4 md:px-10 py-20 flex justify-center bg-[#0F1623]">
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <div class="flex flex-col gap-10 md:gap-16">
+      <div class="flex flex-col gap-4 max-w-[700px]">
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm">
+          Tecnologías
+        </h2>
+        <h1
+          class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+        >
+          Stack Tecnológico Moderno y Robusto
+        </h1>
+        <p class="text-slate-400 text-lg font-normal leading-relaxed">
+          Utilizamos las herramientas más avanzadas del mercado para garantizar
+          rendimiento, seguridad y escalabilidad en cada proyecto.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {
+          techCategories.map((category) => (
+            <div class="flex flex-col gap-6">
+              <div class="flex items-center gap-3 pb-4 border-b border-[#222949]">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <span class="material-symbols-outlined !text-xl">
+                    {category.icon}
+                  </span>
+                </div>
+                <h3 class="text-white text-lg font-bold">{category.name}</h3>
+              </div>
+
+              <div class="flex flex-col gap-3">
+                {category.technologies.map((tech) => (
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center text-primary text-xs font-bold">
+                      {tech.abbr}
+                    </div>
+                    <span class="text-slate-300 text-sm font-medium">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
