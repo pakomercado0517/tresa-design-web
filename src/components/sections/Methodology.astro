@@ -1,0 +1,84 @@
+---
+import Card from "../ui/Card.astro";
+
+const methodologySteps = [
+  {
+    number: "01",
+    title: "Análisis del Problema",
+    description:
+      "Entendemos profundamente tu negocio, desafíos y objetivos para diseñar la mejor solución.",
+  },
+  {
+    number: "02",
+    title: "Propuesta Técnica",
+    description:
+      "Presentamos un plan detallado con timeline, tecnologías y presupuesto transparente.",
+  },
+  {
+    number: "03",
+    title: "Desarrollo",
+    description:
+      "Construimos tu producto utilizando las mejores prácticas y metodologías ágiles.",
+  },
+  {
+    number: "04",
+    title: "Pruebas y QA",
+    description:
+      "Verificamos cada detalle para garantizar rendimiento, seguridad y calidad máxima.",
+  },
+  {
+    number: "05",
+    title: "Entrega y Soporte",
+    description:
+      "Lanzamos tu producto y brindamos acompañamiento técnico continuo a largo plazo.",
+  },
+];
+---
+
+<section class="px-4 md:px-10 py-20 flex justify-center" id="methodology">
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <div class="flex flex-col gap-10 md:gap-16">
+      <div class="flex flex-col gap-4 max-w-[700px]">
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm">
+          Nuestro Proceso
+        </h2>
+        <h1
+          class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+        >
+          Metodología TresA
+        </h1>
+        <p class="text-slate-400 text-lg font-normal leading-relaxed">
+          Seguimos un proceso estructurado y transparente que garantiza
+          resultados excepcionales en cada proyecto.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {
+          methodologySteps.map((step, index) => (
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-3">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <span class="text-xl font-bold">{step.number}</span>
+                </div>
+                <h3 class="text-white text-lg font-bold leading-tight">
+                  {step.title}
+                </h3>
+                <p class="text-[#909acb] text-sm font-normal leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+              {index < methodologySteps.length - 1 && (
+                <div class="hidden lg:flex items-end justify-end h-16">
+                  <span class="material-symbols-outlined text-primary/30 !text-4xl">
+                    arrow_forward
+                  </span>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
