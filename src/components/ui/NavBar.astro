@@ -1,0 +1,49 @@
+---
+import Button from "./Button.astro";
+---
+
+<header
+  class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#222949]/50 bg-[#101322]/80 backdrop-blur-md px-10 py-4 transition-all duration-300"
+>
+  <div
+    class="flex items-center gap-4 text-white cursor-pointer hover:opacity-80 transition-opacity"
+  >
+    <div
+      class="size-8 flex items-center justify-center bg-primary rounded-lg text-white"
+    >
+      <span class="material-symbols-outlined !text-[20px]">architecture</span>
+    </div>
+    <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+      TresA Design
+    </h2>
+  </div>
+
+  <div class="flex flex-1 justify-end gap-8 hidden md:flex">
+    <div class="flex items-center gap-9">
+      <a
+        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        href="#services"
+      >
+        Servicios
+      </a>
+      <a
+        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        href="#projects"
+      >
+        Portafolio
+      </a>
+      <a
+        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        href="#about"
+      >
+        Sobre Nosotros
+      </a>
+    </div>
+    <Button variant="primary" size="sm">Solicitar Cotización</Button>
+  </div>
+
+  <!-- Mobile Menu Icon -->
+  <div class="md:hidden text-white cursor-pointer">
+    <span class="material-symbols-outlined">menu</span>
+  </div>
+</header>

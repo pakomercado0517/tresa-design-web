@@ -1,22 +1,107 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
+import NavBar from "../components/ui/NavBar.astro";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="TresA Design - Soluciones digitales y desarrollo web profesional"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="TresA Design - Soluciones digitales y desarrollo web profesional"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="font-display">
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col group/design-root"
+    >
+      <NavBar />
+      <div class="layout-container flex h-full grow flex-col">
+        <slot />
+      </div>
+      <!-- Footer -->
+      <footer
+        class="flex flex-col gap-6 px-5 py-12 md:py-20 text-center bg-[#0B0D19] border-t border-[#222949]"
+      >
+        <div class="max-w-[960px] mx-auto flex flex-col gap-8">
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="size-10 flex items-center justify-center bg-primary/20 rounded-lg text-primary mb-2"
+            >
+              <span class="material-symbols-outlined">architecture</span>
+            </div>
+            <h2 class="text-white text-2xl font-bold">TresA Design</h2>
+            <p class="text-slate-400 max-w-md mx-auto">
+              Elevando empresas a través de ingeniería digital superior y diseño
+              reflexivo.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-8 mt-4">
+            <a
+              class="text-slate-400 hover:text-primary transition-colors text-sm font-medium"
+              href="#">Política de Privacidad</a
+            >
+            <a
+              class="text-slate-400 hover:text-primary transition-colors text-sm font-medium"
+              href="#">Términos de Servicio</a
+            >
+            <a
+              class="text-slate-400 hover:text-primary transition-colors text-sm font-medium"
+              href="#">Carreras</a
+            >
+          </div>
+          <div class="flex flex-wrap justify-center gap-6 mt-4">
+            <a
+              class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined !text-[20px]">public</span>
+            </a>
+            <a
+              class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined !text-[20px]"
+                >alternate_email</span
+              >
+            </a>
+            <a
+              class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
+              href="#"
+            >
+              <span class="material-symbols-outlined !text-[20px]"
+                >rss_feed</span
+              >
+            </a>
+          </div>
+          <p class="text-slate-600 text-sm font-normal mt-8">
+            © {year} TresA Design. Todos los derechos reservados.
+          </p>
+        </div>
+      </footer>
+
+      <!-- Floating Action Button (FAB) -->
+      <button
+        class="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-blue-900/40 hover:bg-blue-600 hover:scale-110 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#101322]"
+      >
+        <span class="material-symbols-outlined !text-[28px]">chat_bubble</span>
+      </button>
+    </div>
+  </body>
+</html>

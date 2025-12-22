@@ -1,0 +1,81 @@
+---
+import Card from "../ui/Card.astro";
+
+const services = [
+  {
+    icon: "terminal",
+    title: "Desarrollo Web",
+    description:
+      "Aplicaciones web escalables y seguras construidas con tecnologías modernas como React, Next.js y Node.",
+  },
+  {
+    icon: "design_services",
+    title: "Diseño de Software",
+    description:
+      "Diseño enfocado en el usuario con interfaces intuitivas y experiencias fluidas (UI/UX).",
+  },
+  {
+    icon: "lightbulb",
+    title: "Consultoría",
+    description:
+      "Asesoramiento técnico estratégico para optimizar tu viaje de transformación digital y tech stack.",
+  },
+];
+---
+
+<section class="px-4 md:px-10 py-20 flex justify-center" id="services">
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <div class="flex flex-col gap-10 md:gap-16">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
+      >
+        <div class="flex flex-col gap-4 max-w-[600px]">
+          <h2 class="text-primary font-bold tracking-widest uppercase text-sm">
+            Nuestra Experiencia
+          </h2>
+          <h1
+            class="text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+          >
+            Servicios Integrales de Diseño y Desarrollo
+          </h1>
+          <p class="text-slate-400 text-lg font-normal leading-relaxed">
+            Nos especializamos en entregar productos digitales de alto
+            rendimiento en diversos dominios, enfocándose en escalabilidad y
+            experiencia del usuario.
+          </p>
+        </div>
+        <button
+          class="group flex items-center gap-2 text-primary font-bold text-base hover:text-white transition-colors"
+        >
+          Ver todos los servicios
+          <span
+            class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+            >arrow_forward</span
+          >
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          services.map((service) => (
+            <Card>
+              <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined !text-3xl">
+                  {service.icon}
+                </span>
+              </div>
+              <div class="flex flex-col gap-3">
+                <h2 class="text-white text-2xl font-bold leading-tight">
+                  {service.title}
+                </h2>
+                <p class="text-[#909acb] text-base font-normal leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

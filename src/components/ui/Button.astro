@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { variant = "primary", size = "md", class: className = "" } = Astro.props;
+
+const baseStyles =
+  "flex cursor-pointer items-center justify-center overflow-hidden rounded-full font-bold leading-normal tracking-[0.015em] transition-all focus:outline-none";
+
+const variants = {
+  primary:
+    "bg-primary hover:bg-blue-600 text-white shadow-lg shadow-blue-900/20 hover:-translate-y-1",
+  secondary: "bg-slate-800 hover:bg-slate-700 text-white",
+  outline:
+    "border-2 border-slate-600 hover:border-white text-white bg-transparent hover:bg-white/5",
+};
+
+const sizes = {
+  sm: "h-10 px-4 text-sm min-w-[84px]",
+  md: "h-12 px-8 text-base min-w-[160px]",
+  lg: "h-14 px-10 text-lg min-w-[180px]",
+};
+
+const buttonClass = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+<button class={buttonClass}>
+  <slot />
+</button>
