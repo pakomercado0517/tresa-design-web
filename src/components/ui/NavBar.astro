@@ -1,11 +1,21 @@
 ---
 import Button from "./Button.astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const isActive = (href: string) => {
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname.startsWith(href);
+};
 ---
 
 <header
   class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#222949]/50 bg-[#101322]/80 backdrop-blur-md px-10 py-4 transition-all duration-300"
 >
-  <div
+  <a
+    href="/"
     class="flex items-center gap-4 text-white cursor-pointer hover:opacity-80 transition-opacity"
   >
     <div
@@ -16,24 +26,46 @@ import Button from "./Button.astro";
     <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">
       TresA Design
     </h2>
-  </div>
+  </a>
 
-  <div class="flex flex-1 justify-end gap-8 hidden md:flex">
+  <div class="flex-1 justify-end gap-8 hidden md:flex">
     <div class="flex items-center gap-9">
       <a
-        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+          isActive("/")
+            ? "text-primary border-primary"
+            : "text-slate-300 border-transparent hover:text-primary"
+        }`}
+        href="/"
+      >
+        Inicio
+      </a>
+      <a
+        class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+          isActive("/services")
+            ? "text-primary border-primary"
+            : "text-slate-300 border-transparent hover:text-primary"
+        }`}
         href="/services"
       >
         Servicios
       </a>
       <a
-        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+          isActive("#projects")
+            ? "text-primary border-primary"
+            : "text-slate-300 border-transparent hover:text-primary"
+        }`}
         href="#projects"
       >
         Portafolio
       </a>
       <a
-        class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+        class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+          isActive("#about")
+            ? "text-primary border-primary"
+            : "text-slate-300 border-transparent hover:text-primary"
+        }`}
         href="#about"
       >
         Sobre Nosotros
@@ -59,19 +91,41 @@ import Button from "./Button.astro";
 >
   <nav class="flex flex-col gap-4 px-10 py-6">
     <a
-      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+        isActive("/")
+          ? "text-primary border-primary"
+          : "text-slate-300 border-transparent hover:text-primary"
+      }`}
+      href="/"
+    >
+      Inicio
+    </a>
+    <a
+      class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+        isActive("/services")
+          ? "text-primary border-primary"
+          : "text-slate-300 border-transparent hover:text-primary"
+      }`}
       href="/services"
     >
       Servicios
     </a>
     <a
-      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+        isActive("#projects")
+          ? "text-primary border-primary"
+          : "text-slate-300 border-transparent hover:text-primary"
+      }`}
       href="#projects"
     >
       Portafolio
     </a>
     <a
-      class="text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+      class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
+        isActive("#about")
+          ? "text-primary border-primary"
+          : "text-slate-300 border-transparent hover:text-primary"
+      }`}
       href="#about"
     >
       Sobre Nosotros
