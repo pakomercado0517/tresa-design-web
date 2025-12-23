@@ -2,7 +2,7 @@
 const techCategories = [
   {
     name: "Frontend",
-    icon: "code",
+    icon: "mdi:code",
     technologies: [
       { name: "React", abbr: "RE" },
       { name: "Next.js", abbr: "NJ" },
@@ -11,7 +11,7 @@ const techCategories = [
   },
   {
     name: "Backend",
-    icon: "storage",
+    icon: "mdi:storage",
     technologies: [
       { name: "Node.js", abbr: "ND" },
       { name: "Express", abbr: "EX" },
@@ -20,7 +20,7 @@ const techCategories = [
   },
   {
     name: "Bases de datos",
-    icon: "database",
+    icon: "mdi:database",
     technologies: [
       { name: "PostgreSQL", abbr: "PG" },
       { name: "MongoDB", abbr: "MG" },
@@ -28,7 +28,7 @@ const techCategories = [
   },
   {
     name: "ORMs",
-    icon: "schema",
+    icon: "material-symbols:schema",
     technologies: [
       { name: "Sequelize", abbr: "SQ" },
       { name: "Mongoose", abbr: "MO" },
@@ -61,9 +61,7 @@ const techCategories = [
             <div class="flex flex-col gap-6">
               <div class="flex items-center gap-3 pb-4 border-b border-[#222949]">
                 <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  <span class="material-symbols-outlined !text-xl">
-                    {category.icon}
-                  </span>
+                  <iconify-icon icon={category.icon} width="16" height="16" />
                 </div>
                 <h3 class="text-white text-lg font-bold">{category.name}</h3>
               </div>

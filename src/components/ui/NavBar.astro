@@ -21,7 +21,7 @@ const isActive = (href: string) => {
     <div
       class="size-8 flex items-center justify-center bg-primary rounded-lg text-white"
     >
-      <span class="material-symbols-outlined !text-[20px]">architecture</span>
+      <iconify-icon icon="mdi:building" width="20" height="20"></iconify-icon>
     </div>
     <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">
       TresA Design
@@ -62,16 +62,18 @@ const isActive = (href: string) => {
       </a>
       <a
         class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
-          isActive("#about")
+          isActive("/about")
             ? "text-primary border-primary"
             : "text-slate-300 border-transparent hover:text-primary"
         }`}
-        href="#about"
+        href="/about"
       >
         Sobre Nosotros
       </a>
     </div>
-    <Button variant="primary" size="sm">Solicitar Cotización</Button>
+    <a href="/cta"
+      ><Button variant="primary" size="sm">Solicitar Cotización</Button></a
+    >
   </div>
 
   <!-- Mobile Menu Icon -->
@@ -80,7 +82,8 @@ const isActive = (href: string) => {
     class="md:hidden text-white cursor-pointer p-2 hover:opacity-80 transition-opacity"
     aria-label="Abrir menú"
   >
-    <span class="material-symbols-outlined" id="menu-icon">menu</span>
+    <iconify-icon icon="mdi:menu" id="menu-icon" width="24" height="24"
+    ></iconify-icon>
   </button>
 </header>
 
@@ -122,16 +125,18 @@ const isActive = (href: string) => {
     </a>
     <a
       class={`text-sm font-medium leading-normal transition-colors pb-1 border-b-2 ${
-        isActive("#about")
+        isActive("/about")
           ? "text-primary border-primary"
           : "text-slate-300 border-transparent hover:text-primary"
       }`}
-      href="#about"
+      href="/about"
     >
       Sobre Nosotros
     </a>
     <div class="pt-4">
-      <Button variant="primary" size="sm">Solicitar Cotización</Button>
+      <a href="/cta" class="inline-block"
+        ><Button variant="primary" size="sm">Solicitar Cotización</Button></a
+      >
     </div>
   </nav>
 </div>
@@ -145,10 +150,10 @@ const isActive = (href: string) => {
     const isHidden = mobileMenu?.classList.contains("hidden");
     if (isHidden) {
       mobileMenu?.classList.remove("hidden");
-      menuIcon!.textContent = "close";
+      menuIcon!.setAttribute("icon", "mdi:close");
     } else {
       mobileMenu?.classList.add("hidden");
-      menuIcon!.textContent = "menu";
+      menuIcon!.setAttribute("icon", "mdi:menu");
     }
   });
 
@@ -157,7 +162,7 @@ const isActive = (href: string) => {
   links?.forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu?.classList.add("hidden");
-      menuIcon!.textContent = "menu";
+      menuIcon!.setAttribute("icon", "mdi:menu");
     });
   });
 </script>

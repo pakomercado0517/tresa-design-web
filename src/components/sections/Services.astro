@@ -3,19 +3,19 @@ import Card from "../ui/Card.astro";
 
 const services = [
   {
-    icon: "terminal",
+    icon: "mdi:terminal",
     title: "Desarrollo Web",
     description:
       "Aplicaciones web escalables y seguras construidas con tecnologías modernas como React, Next.js y Node.",
   },
   {
-    icon: "design_services",
+    icon: "material-symbols-light:design-services",
     title: "Diseño de Software",
     description:
       "Diseño enfocado en el usuario con interfaces intuitivas y experiencias fluidas (UI/UX).",
   },
   {
-    icon: "lightbulb",
+    icon: "mdi:lightbulb",
     title: "Consultoría",
     description:
       "Asesoramiento técnico estratégico para optimizar tu viaje de transformación digital y tech stack.",
@@ -48,10 +48,11 @@ const services = [
           class="group flex items-center gap-2 text-primary font-bold text-base hover:text-white transition-colors"
         >
           Ver todos los servicios
-          <span
-            class="material-symbols-outlined transition-transform group-hover:translate-x-1"
-            >arrow_forward</span
-          >
+          <iconify-icon
+            icon="mdi:arrow-right"
+            class="transition-transform group-hover:translate-x-1"
+            width="20"
+            height="20"></iconify-icon>
         </button>
       </div>
 
@@ -60,9 +61,7 @@ const services = [
           services.map((service) => (
             <Card>
               <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                <span class="material-symbols-outlined !text-3xl">
-                  {service.icon}
-                </span>
+                <iconify-icon icon={service.icon} width="24" height="24" />
               </div>
               <div class="flex flex-col gap-3">
                 <h2 class="text-white text-2xl font-bold leading-tight">

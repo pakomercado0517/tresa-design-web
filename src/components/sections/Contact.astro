@@ -1,0 +1,192 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section
+  class="flex flex-1 justify-center py-12 md:py-20 lg:py-32 px-4 md:px-10"
+>
+  <div class="flex flex-col max-w-[1200px] flex-1 w-full gap-12">
+    <!-- Header Section -->
+    <div class="flex flex-col gap-6 text-center">
+      <span
+        class="text-primary text-sm font-bold uppercase tracking-widest mb-2"
+        >Contacto</span
+      >
+      <h1
+        class="text-white text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-[-0.033em]"
+      >
+        Hablemos de tu <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary"
+          >próximo proyecto.</span
+        >
+      </h1>
+      <p
+        class="text-slate-300 text-lg md:text-xl font-normal leading-relaxed max-w-[700px] mx-auto"
+      >
+        Estamos listos para transformar tus ideas en soluciones digitales.
+        Cuéntanos qué tienes en mente y exploraremos cómo podemos ayudarte.
+      </p>
+    </div>
+
+    <!-- Contact Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Left Side - Direct Channels -->
+      <div class="flex flex-col gap-8">
+        <div>
+          <h2 class="text-white text-2xl font-bold mb-4">Canales directos</h2>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Si prefieres una comunicación más rápida o tienes una consulta
+            puntual, puedes encontrarnos en nuestros canales oficiales.
+          </p>
+        </div>
+
+        <!-- WhatsApp -->
+        <a
+          href="https://wa.me/your-number"
+          class="flex items-center gap-4 p-4 rounded-lg border border-[#222949] bg-[#0B0D19]/50 hover:border-primary/50 hover:bg-primary/10 transition-all group"
+        >
+          <div
+            class="size-12 flex items-center justify-center bg-green-500/20 rounded-lg text-green-500"
+          >
+            <iconify-icon icon="ic:round-whatsapp" width="24" height="24"
+            ></iconify-icon>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-white font-bold">WhatsApp</h3>
+            <p class="text-slate-400 text-sm">Respuesta rápida</p>
+          </div>
+          <iconify-icon
+            icon="mdi:arrow-top-right"
+            class="text-slate-400 group-hover:text-primary transition-colors"
+            width="20"
+            height="20"></iconify-icon>
+        </a>
+
+        <!-- Email -->
+        <a
+          href="mailto:hola@tresadesign.com"
+          class="flex items-center gap-4 p-4 rounded-lg border border-[#222949] bg-[#0B0D19]/50 hover:border-primary/50 hover:bg-primary/10 transition-all group"
+        >
+          <div
+            class="size-12 flex items-center justify-center bg-primary/20 rounded-lg text-primary"
+          >
+            <iconify-icon icon="ic:round-email" width="24" height="24"
+            ></iconify-icon>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-white font-bold">Correo Electrónico</h3>
+            <p class="text-slate-400 text-sm">hola@tresadesign.com</p>
+          </div>
+          <iconify-icon
+            icon="mdi:arrow-right"
+            class="text-slate-400 group-hover:text-primary transition-colors"
+            width="20"
+            height="20"></iconify-icon>
+        </a>
+
+        <!-- Hours -->
+        <div
+          class="flex items-center gap-4 p-4 rounded-lg border border-[#222949] bg-[#0B0D19]/50"
+        >
+          <div
+            class="size-12 flex items-center justify-center bg-blue-500/20 rounded-lg text-blue-500"
+          >
+            <iconify-icon icon="mdi:calendar-clock" width="24" height="24"
+            ></iconify-icon>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-white font-bold">Horario de Atención</h3>
+            <p class="text-slate-400 text-sm">
+              Lunes a Viernes de 9:00 AM a 6:00 PM (GMT-5).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Contact Form -->
+      <div class="flex flex-col gap-6">
+        <form class="flex flex-col gap-6">
+          <!-- Name and Email Row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-2">
+              <label for="name" class="text-white text-sm font-medium"
+                >Nombre</label
+              >
+              <input
+                type="text"
+                id="name"
+                placeholder="Tu nombre"
+                class="px-4 py-3 rounded-lg bg-[#181d34] border border-[#222949] text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="email" class="text-white text-sm font-medium"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                placeholder="nombre@empresa.com"
+                class="px-4 py-3 rounded-lg bg-[#181d34] border border-[#222949] text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors"
+              />
+            </div>
+          </div>
+
+          <!-- Interest Dropdown -->
+          <div class="flex flex-col gap-2">
+            <label for="interest" class="text-white text-sm font-medium"
+              >Me interesa</label
+            >
+            <select
+              id="interest"
+              class="px-4 py-3 rounded-lg bg-[#181d34] border border-[#222949] text-white focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
+              style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%223b82f6%22 stroke-width=%222%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1.5em 1.5em; padding-right: 2.5rem;"
+            >
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="web">Desarrollo Web a Medida</option>
+              <option value="saas">Plataforma SaaS</option>
+              <option value="movil">Aplicación Móvil</option>
+              <option value="consulta">Consulta Técnica</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="flex flex-col gap-2">
+            <label for="message" class="text-white text-sm font-medium"
+              >Mensaje</label
+            >
+            <textarea
+              id="message"
+              placeholder="Cuéntanos brevemente sobre tu proyecto o los desafíos que enfrentas..."
+              rows="5"
+              class="px-4 py-3 rounded-lg bg-[#181d34] border border-[#222949] text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="mt-4 w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full transition-all hover:-translate-y-1 shadow-lg shadow-blue-900/20"
+          >
+            Enviar Mensaje
+            <iconify-icon icon="mdi:arrow-right" width="20" height="20"
+            ></iconify-icon>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector("form");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Aquí puedes agregar la lógica de envío del formulario
+      alert("Mensaje enviado. Nos contactaremos pronto.");
+      form.reset();
+    });
+  }
+</script>

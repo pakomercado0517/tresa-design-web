@@ -20,6 +20,9 @@ const year = new Date().getFullYear();
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script
+      src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"
+    ></script>
     <meta property="og:title" content={title} />
     <meta
       property="og:description"
@@ -44,7 +47,8 @@ const year = new Date().getFullYear();
             <div
               class="size-10 flex items-center justify-center bg-primary/20 rounded-lg text-primary mb-2"
             >
-              <span class="material-symbols-outlined">architecture</span>
+              <iconify-icon icon="mdi:building" width="24" height="24"
+              ></iconify-icon>
             </div>
             <h2 class="text-white text-2xl font-bold">TresA Design</h2>
             <p class="text-slate-400 max-w-md mx-auto">
@@ -71,23 +75,22 @@ const year = new Date().getFullYear();
               class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
               href="#"
             >
-              <span class="material-symbols-outlined !text-[20px]">public</span>
+              <iconify-icon icon="mdi:earth" width="20" height="20"
+              ></iconify-icon>
             </a>
             <a
               class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
               href="#"
             >
-              <span class="material-symbols-outlined !text-[20px]"
-                >alternate_email</span
-              >
+              <iconify-icon icon="mdi:email" width="20" height="20"
+              ></iconify-icon>
             </a>
             <a
               class="size-10 rounded-full bg-[#181d34] flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"
               href="#"
             >
-              <span class="material-symbols-outlined !text-[20px]"
-                >rss_feed</span
-              >
+              <iconify-icon icon="mdi:rss" width="20" height="20"
+              ></iconify-icon>
             </a>
           </div>
           <p class="text-slate-600 text-sm font-normal mt-8">
@@ -100,7 +103,8 @@ const year = new Date().getFullYear();
       <button
         class="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-blue-900/40 hover:bg-blue-600 hover:scale-110 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#101322]"
       >
-        <span class="material-symbols-outlined !text-[28px]">chat_bubble</span>
+        <iconify-icon icon="mdi:comment-multiple" width="28" height="28"
+        ></iconify-icon>
       </button>
     </div>
   </body>

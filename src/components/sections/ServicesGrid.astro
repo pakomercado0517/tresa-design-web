@@ -3,31 +3,31 @@ import Card from "../ui/Card.astro";
 
 const services = [
   {
-    icon: "globe",
+    icon: "mdi:globe",
     title: "Desarrollo de páginas web",
     description:
       "Sitios rápidos y optimizados para SEO que convierten visitantes en clientes potenciales.",
   },
   {
-    icon: "dashboard",
+    icon: "material-symbols:dashboard",
     title: "Web apps personalizadas",
     description:
       "Aplicaciones diseñadas específicamente para los flujos de trabajo únicos de tu negocio.",
   },
   {
-    icon: "admin_panel_settings",
+    icon: "material-symbols:admin-panel-settings",
     title: "Sistemas administrativos",
     description:
       "Dashboards y software para la gestión y visualización de datos en tiempo real.",
   },
   {
-    icon: "api",
+    icon: "mdi:api",
     title: "Integración de APIs",
     description:
       "Conectamos tus herramientas favoritas (CRM, Pagos, ERP) para automatizar procesos y centralizar información.",
   },
   {
-    icon: "support_agent",
+    icon: "material-symbols:support-agent",
     title: "Mantenimiento y soporte",
     description:
       "Acompañamiento técnico continuo, actualizaciones de seguridad y monitoreo para que el software nunca se detenga.",
@@ -58,9 +58,7 @@ const services = [
           services.map((service) => (
             <Card>
               <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                <span class="material-symbols-outlined !text-2xl">
-                  {service.icon}
-                </span>
+                <iconify-icon icon={service.icon} width="20" height="20" />
               </div>
               <div class="flex flex-col gap-3">
                 <h3 class="text-white text-xl font-bold leading-tight">
@@ -79,7 +77,8 @@ const services = [
           <div
             class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
           >
-            <span class="material-symbols-outlined !text-2xl">help</span>
+            <iconify-icon icon="mdi:help-circle" width="20" height="20"
+            ></iconify-icon>
           </div>
           <div class="flex flex-col gap-3">
             <h3 class="text-white text-xl font-bold leading-tight">
@@ -92,10 +91,11 @@ const services = [
               class="text-primary font-bold text-base hover:text-white transition-colors flex items-center gap-2 mt-2 group"
             >
               Contáctanos
-              <span
-                class="material-symbols-outlined transition-transform group-hover:translate-x-1"
-                >arrow_forward</span
-              >
+              <iconify-icon
+                icon="mdi:arrow-right"
+                class="transition-transform group-hover:translate-x-1"
+                width="20"
+                height="20"></iconify-icon>
             </a>
           </div>
         </Card>
