@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/portfolio/ProjectCard.astro";
+import ProjectFilters from "../../components/portfolio/ProjectFilters.astro";
+import CTA from "../../components/sections/CTA.astro";
+import { projects, getProjectsByCategory, categories } from "../../data/projects";
+
+// Obtener categoría del query string
+const url = Astro.url;
+const categoryParam = url.searchParams.get("category") || "All";
+const activeCategory = categories.includes(categoryParam as any) ? categoryParam : "All";
+
+// Obtener proyectos filtrados
+const filteredProjects = getProjectsByCategory(activeCategory);
+
+// Configuración de paginación
+const PROJECTS_PER_PAGE = 6;
+const limitParam = url.searchParams.get("limit");
+const limit = limitParam ? parseInt(limitParam) : PROJECTS_PER_PAGE;
+const displayedProjects = filteredProjects.slice(0, limit);
+const hasMoreProjects = filteredProjects.length > limit;
+---
+
+<Layout title="Portafolio - TresA Design">
+  <!-- Hero Section -->
+  <section class="px-4 md:px-10 py-16 md:py-24 flex justify-center bg-[#15192e]">
+    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+      <div class="flex flex-col gap-6 max-w-[800px]">
+        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em]">
+          Trabajos Seleccionados
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl font-normal leading-relaxed">
+          Explora nuestro portafolio de soluciones digitales innovadoras que han transformado negocios y entregado resultados excepcionales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters Section -->
+  <section class="px-4 md:px-10 py-8 flex justify-center bg-[#15192e] border-t border-[#222949]">
+    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+      <ProjectFilters activeCategory={activeCategory} />
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="px-4 md:px-10 py-12 md:py-20 flex justify-center bg-[#101322]">
+    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {displayedProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      <!-- Load More Button -->
+      {hasMoreProjects && (
+        <div class="flex justify-center mt-12">
+          <a
+            href={activeCategory === "All" 
+              ? `/portfolio?limit=${limit + PROJECTS_PER_PAGE}`
+              : `/portfolio?category=${activeCategory}&limit=${limit + PROJECTS_PER_PAGE}`
+            }
+            class="px-8 py-3.5 rounded-lg bg-[#181d34] border border-[#222949] text-white font-medium hover:border-primary hover:bg-primary/10 transition-all duration-200 inline-block"
+          >
+            Cargar Más Proyectos
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA />
+
+</Layout>
+

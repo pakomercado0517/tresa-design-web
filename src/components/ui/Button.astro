@@ -28,5 +28,7 @@ const buttonClass = `${baseStyles} ${variants[variant]} ${sizes[size]} ${classNa
 ---
 
 <button class={buttonClass}>
-  <slot />
+  <span class="flex items-center justify-center gap-2">
+    <slot />
+  </span>
 </button>

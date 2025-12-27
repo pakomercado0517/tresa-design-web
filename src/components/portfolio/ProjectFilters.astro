@@ -1,0 +1,39 @@
+---
+import { categories } from "../../data/projects";
+
+interface Props {
+  activeCategory: string;
+}
+
+const { activeCategory } = Astro.props;
+---
+
+<div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-x-visible md:pb-0">
+  {categories.map((category) => {
+    const isActive = category === activeCategory;
+    return (
+      <a
+        href={category === "All" ? "/portfolio" : `/portfolio?category=${category}`}
+        class={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
+          isActive
+            ? "bg-primary text-white shadow-lg shadow-primary/30"
+            : "bg-[#181d34] text-slate-300 border border-[#222949] hover:border-primary/50 hover:text-white"
+        }`}
+      >
+        {category}
+      </a>
+    );
+  })}
+</div>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+</style>
+

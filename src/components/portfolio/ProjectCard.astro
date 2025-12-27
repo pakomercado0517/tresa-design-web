@@ -1,0 +1,51 @@
+---
+import { type Project } from "../../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<a
+  href={`/portfolio/${project.slug}`}
+  class="group flex flex-col rounded-xl overflow-hidden bg-[#181d34] border border-[#222949] hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
+>
+  <!-- Image Container -->
+  <div class="relative w-full aspect-[4/3] overflow-hidden bg-[#101323]">
+    <div
+      class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+      style={`background-image: url("${project.image}")`}
+    >
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#181d34] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col gap-3 p-6">
+    <div class="flex flex-col gap-2">
+      <h3 class="text-white text-xl font-bold leading-tight group-hover:text-primary transition-colors">
+        {project.title}
+      </h3>
+      <p class="text-slate-400 text-sm font-normal leading-relaxed line-clamp-2">
+        {project.shortDescription}
+      </p>
+    </div>
+
+    <!-- Technologies Tags -->
+    <div class="flex flex-wrap gap-2 pt-2">
+      {project.technologies.slice(0, 3).map((tech) => (
+        <span class="px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium">
+          {tech}
+        </span>
+      ))}
+      {project.technologies.length > 3 && (
+        <span class="px-2.5 py-1 rounded-md bg-[#222949] text-slate-400 text-xs font-medium">
+          +{project.technologies.length - 3}
+        </span>
+      )}
+    </div>
+  </div>
+</a>
+
