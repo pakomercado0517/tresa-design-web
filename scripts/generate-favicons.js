@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 const publicDir = join(rootDir, 'public');
-const logoPath = join(publicDir, 'logotipo-transparent.svg');
+const logoPath = join(publicDir, 'favicon.svg');
 
 // Asegurar que el directorio public existe
 if (!existsSync(publicDir)) {
