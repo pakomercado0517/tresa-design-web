@@ -3,74 +3,72 @@ import Layout from "../../layouts/Layout.astro";
 import ProjectCard from "../../components/portfolio/ProjectCard.astro";
 import ProjectFilters from "../../components/portfolio/ProjectFilters.astro";
 import CTA from "../../components/sections/CTA.astro";
-import { projects, getProjectsByCategory, categories } from "../../data/projects";
+import { projects, categories } from "../../data/projects";
 
-// Obtener categoría del query string
 const url = Astro.url;
 const categoryParam = url.searchParams.get("category") || "All";
-const activeCategory = categories.includes(categoryParam as any) ? categoryParam : "All";
-
-// Obtener proyectos filtrados
-const filteredProjects = getProjectsByCategory(activeCategory);
-
-// Configuración de paginación
-const PROJECTS_PER_PAGE = 6;
-const limitParam = url.searchParams.get("limit");
-const limit = limitParam ? parseInt(limitParam) : PROJECTS_PER_PAGE;
-const displayedProjects = filteredProjects.slice(0, limit);
-const hasMoreProjects = filteredProjects.length > limit;
+const activeCategory = categories.includes(
+  categoryParam as (typeof categories)[number]
+)
+  ? categoryParam
+  : "All";
 ---
 
 <Layout title="Portafolio - TresA Design">
-  <!-- Hero Section -->
-  <section class="px-4 md:px-10 py-16 md:py-24 flex justify-center bg-[#15192e]">
-    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
-      <div class="flex flex-col gap-6 max-w-[800px]">
-        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em]">
-          Trabajos Seleccionados
-        </h1>
-        <p class="text-slate-400 text-lg md:text-xl font-normal leading-relaxed">
-          Explora nuestro portafolio de soluciones digitales innovadoras que han transformado negocios y entregado resultados excepcionales.
-        </p>
+  <main
+    class="pt-16 md:pt-24 pb-16 md:pb-20 px-6 md:px-8 max-w-[1280px] mx-auto"
+  >
+    <!-- Hero -->
+    <section class="text-center mb-12 md:mb-16 relative">
+      <div
+        class="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"
+        aria-hidden="true"
+      >
       </div>
-    </div>
-  </section>
+      <h1
+        class="relative text-4xl md:text-5xl font-black tracking-tight text-white mb-6 leading-tight"
+      >
+        Enfocados en Valor y Calidad
+      </h1>
+      <h2>Soluciones de Impacto</h2>
+      <p
+        class="relative text-left mt-4 max-w-2xl mx-auto text-lg text-[#909acb] leading-relaxed"
+      >
+        Elevamos tus ideas medainte un diseño cuidado y una ingeniería sólida.
+        Descubre cómo nuestras soluciones digitales generan resultados reales y
+        medibles.
+      </p>
+    </section>
 
-  <!-- Filters Section -->
-  <section class="px-4 md:px-10 py-8 flex justify-center bg-[#15192e] border-t border-[#222949]">
-    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
+    <!-- Filters -->
+    <div class="mb-12 md:mb-16">
       <ProjectFilters activeCategory={activeCategory} />
     </div>
-  </section>
 
-  <!-- Projects Grid -->
-  <section class="px-4 md:px-10 py-12 md:py-20 flex justify-center bg-[#101322]">
-    <div class="flex flex-col max-w-[1200px] flex-1 w-full">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {displayedProjects.map((project) => (
-          <ProjectCard project={project} />
-        ))}
-      </div>
-
-      <!-- Load More Button -->
-      {hasMoreProjects && (
-        <div class="flex justify-center mt-12">
-          <a
-            href={activeCategory === "All" 
-              ? `/portfolio?limit=${limit + PROJECTS_PER_PAGE}`
-              : `/portfolio?category=${activeCategory}&limit=${limit + PROJECTS_PER_PAGE}`
-            }
-            class="px-8 py-3.5 rounded-lg bg-[#181d34] border border-[#222949] text-white font-medium hover:border-primary hover:bg-primary/10 transition-all duration-200 inline-block"
-          >
-            Cargar Más Proyectos
-          </a>
-        </div>
-      )}
+    <!-- Projects Grid -->
+    <div
+      id="projects-grid"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+    >
+      {projects.map((project) => <ProjectCard project={project} />)}
     </div>
-  </section>
 
-  <!-- CTA Section -->
+    <div id="projects-empty" class="hidden text-center py-16 text-[#909acb]">
+      <p class="text-lg">No hay proyectos en esta categoría por ahora.</p>
+    </div>
+
+    <!-- Load More -->
+    <div id="load-more-wrapper" class="mt-16 md:mt-20 justify-center" hidden>
+      <button
+        type="button"
+        id="load-more-btn"
+        class="bg-[#1a1b25] border border-[#222949] hover:border-primary px-10 py-4 rounded-xl text-xl font-bold text-white transition-all duration-300 flex items-center gap-3"
+      >
+        Ver más proyectos
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+    </div>
+  </main>
+
   <CTA />
-
 </Layout>
-
