@@ -1,5 +1,7 @@
 ---
+import { getProjectBySlug } from "../../data/projects";
 
+const contafy = getProjectBySlug("contafy");
 ---
 
 <section
@@ -15,30 +17,30 @@
         </p>
       </div>
 
-      <div
-        class="w-full rounded-xl overflow-hidden bg-[#101323] aspect-[21/9] relative group cursor-pointer shadow-2xl"
-      >
-        <div
-          class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10"
-        >
-        </div>
-        <div
-          class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105"
-          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaRobA_9IiZJjOY1hWLQh192LhADfQNip0X87ivOFir6nWdqknOoh1TmzXSKAMgSZYNqCRrVKlj47PdCvHDEG69s_VPa_yHNsgM9PtEFdlPpvKxJgHRSsTzTTMzpepAJJ-i7os5QzF8H9nqfUHQkL6P6wMBdBIZNBPoUVD_KZCqaIVSyh_KvM_doGei1KEcQpOFxV0zNY8L0Ab2Adc3pRtY0umc6fhXIvCpj-tmsM7gfMYEo7bpkvbN3tgT9b_uA2GQIpAX2QsiYY5");'
-        >
-        </div>
-        <div
-          class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform"
-        >
-          <h3 class="text-white text-2xl font-bold mb-2">Panel FinTech</h3>
-          <p
-            class="text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity delay-100"
+      {
+        contafy && (
+          <a
+            href={`/portfolio/${contafy.slug}`}
+            class="block w-full rounded-xl overflow-hidden bg-[#101323] aspect-[21/9] relative group cursor-pointer shadow-2xl"
           >
-            Una herramienta integral de análisis financiero para clientes
-            empresariales.
-          </p>
-        </div>
-      </div>
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors z-10"></div>
+            <div
+              class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105"
+              style={`background-image: url("${contafy.image}")`}
+            >
+            </div>
+            <div class="absolute bottom-0 left-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform">
+              <span class="inline-block mb-3 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-semibold uppercase tracking-wider">
+                {contafy.badge ?? contafy.category}
+              </span>
+              <h3 class="text-white text-2xl font-bold mb-2">{contafy.title}</h3>
+              <p class="text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity delay-100 max-w-2xl">
+                {contafy.shortDescription}
+              </p>
+            </div>
+          </a>
+        )
+      }
     </div>
   </div>
 </section>

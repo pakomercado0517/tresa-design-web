@@ -6,34 +6,148 @@ interface Props {
 }
 
 const { activeCategory } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  All: "Todos",
+  "Web App": "Web Apps",
+  Mobile: "Mobile",
+  Platform: "Platforms",
+  "E-commerce": "E-commerce",
+};
 ---
 
-<div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-x-visible md:pb-0">
-  {categories.map((category) => {
-    const isActive = category === activeCategory;
-    return (
-      <a
-        href={category === "All" ? "/portfolio" : `/portfolio?category=${category}`}
-        class={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap flex-shrink-0 ${
-          isActive
-            ? "bg-primary text-white shadow-lg shadow-primary/30"
-            : "bg-[#181d34] text-slate-300 border border-[#222949] hover:border-primary/50 hover:text-white"
-        }`}
-      >
-        {category}
-      </a>
-    );
-  })}
+<div
+  id="project-filters"
+  class="flex flex-wrap justify-center gap-3 md:gap-4"
+  data-active={activeCategory}
+>
+  {
+    categories.map((category) => {
+      const isActive = category === activeCategory;
+
+      return (
+        <button
+          type="button"
+          data-category={category}
+          aria-pressed={isActive ? "true" : "false"}
+          class:list={[
+            "project-filter-btn px-6 py-2 rounded-full text-sm font-medium border border-[#222949] transition-all whitespace-nowrap",
+            isActive
+              ? "portfolio-filter-active"
+              : "text-[#909acb] hover:border-primary/50 hover:text-primary",
+          ]}
+        >
+          {categoryLabels[category] ?? category}
+        </button>
+      );
+    })
+  }
 </div>
 
-<style>
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
-  }
-</style>
+<script>
+  const PROJECTS_PER_PAGE = 6;
+  const ACTIVE_CLASS = "portfolio-filter-active";
+  const INACTIVE_CLASSES = ["text-[#909acb]"];
 
+  function getCategoryFromUrl(): string {
+    return new URLSearchParams(window.location.search).get("category") || "All";
+  }
+
+  function getLimitFromUrl(): number {
+    const limit = Number(new URLSearchParams(window.location.search).get("limit"));
+    return Number.isFinite(limit) && limit > 0 ? limit : PROJECTS_PER_PAGE;
+  }
+
+  function buildPortfolioUrl(category: string, limit?: number): string {
+    const params = new URLSearchParams();
+    if (category !== "All") params.set("category", category);
+    if (limit && limit > PROJECTS_PER_PAGE) params.set("limit", String(limit));
+    const query = params.toString();
+    return query ? `/portfolio?${query}` : "/portfolio";
+  }
+
+  function setActiveButton(category: string) {
+    document.querySelectorAll<HTMLButtonElement>(".project-filter-btn").forEach((btn) => {
+      const isActive = btn.dataset.category === category;
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      btn.classList.toggle(ACTIVE_CLASS, isActive);
+      INACTIVE_CLASSES.forEach((cls) => btn.classList.toggle(cls, !isActive));
+    });
+  }
+
+  function updateLoadMore(visibleCount: number, totalMatching: number, category: string) {
+    const loadMoreWrapper = document.getElementById("load-more-wrapper");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    if (!loadMoreWrapper || !loadMoreBtn) return;
+
+    const hasMore = totalMatching > visibleCount;
+    loadMoreWrapper.hidden = !hasMore;
+    loadMoreWrapper.style.display = hasMore ? "flex" : "none";
+    loadMoreBtn.dataset.category = category;
+    loadMoreBtn.dataset.nextLimit = String(visibleCount + PROJECTS_PER_PAGE);
+  }
+
+  function filterProjects(category: string, limit = PROJECTS_PER_PAGE) {
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-project-card]")
+    );
+    const emptyState = document.getElementById("projects-empty");
+
+    let matching = 0;
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const matches = category === "All" || card.dataset.category === category;
+
+      if (matches) {
+        matching += 1;
+        const shouldShow = matching <= limit;
+        card.classList.toggle("hidden", !shouldShow);
+        if (shouldShow) visible += 1;
+      } else {
+        card.classList.add("hidden");
+      }
+    });
+
+    emptyState?.classList.toggle("hidden", matching > 0);
+    setActiveButton(category);
+    updateLoadMore(visible, matching, category);
+  }
+
+  function syncFromUrl() {
+    filterProjects(getCategoryFromUrl(), getLimitFromUrl());
+  }
+
+  function initFilters() {
+    const filters = document.getElementById("project-filters");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    if (!filters || filters.dataset.bound === "true") {
+      syncFromUrl();
+      return;
+    }
+
+    filters.dataset.bound = "true";
+
+    filters.querySelectorAll<HTMLButtonElement>(".project-filter-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const category = btn.dataset.category || "All";
+        history.pushState({ category }, "", buildPortfolioUrl(category));
+        filterProjects(category, PROJECTS_PER_PAGE);
+      });
+    });
+
+    loadMoreBtn?.addEventListener("click", (event) => {
+      event.preventDefault();
+      const category = loadMoreBtn.dataset.category || "All";
+      const nextLimit = Number(loadMoreBtn.dataset.nextLimit) || PROJECTS_PER_PAGE * 2;
+      history.pushState({ category, limit: nextLimit }, "", buildPortfolioUrl(category, nextLimit));
+      filterProjects(category, nextLimit);
+    });
+
+    window.addEventListener("popstate", syncFromUrl);
+    syncFromUrl();
+  }
+
+  initFilters();
+  document.addEventListener("astro:page-load", initFilters);
+</script>
